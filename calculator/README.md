@@ -25,7 +25,7 @@ A simple menu-driven calculator built using the C programming language.
 ### Compile
 
 ```bash
-gcc calculator.c -o calculator
+gcc main.c -o calculator
 ```
 
 ### Execute
