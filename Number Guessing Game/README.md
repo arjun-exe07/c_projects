@@ -29,7 +29,7 @@ A simple console-based Number Guessing Game built using the C programming langua
 ### Compile
 
 ```bash
-gcc number_guessing_game.c -o game
+gcc main.c -o game
 ```
 
 ### Execute
