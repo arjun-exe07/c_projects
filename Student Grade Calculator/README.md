@@ -24,7 +24,7 @@ A simple C program that calculates the total marks, average marks, and grade of 
 ### Compile
 
 ```bash
-gcc student_grade_calculator.c -o grade_calculator
+gcc main.c -o grade_calculator
 ```
 
 ### Execute
