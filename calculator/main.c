@@ -6,7 +6,7 @@ float add(float num1, float num2)
   return num1 + num2;
 }
 
-float substract(float num1, float num2)
+float subtract(float num1, float num2)
 {
   // difference function
   return num1 - num2;
@@ -23,7 +23,7 @@ float divide(float num1, float num2)
   // divsion function
   while (num2 == 0)
   {
-    printf("A Number cannot be divided by zero");
+    printf("A Number cannot be divided by zero\n");
     printf("Enter the second number :");
     scanf("%f", &num2);
   }
@@ -34,7 +34,7 @@ float divide(float num1, float num2)
 int main()
 {
 
-  int ch;
+  int ch = 0;
   float num1, num2, result;
   printf("==== Calculator ====\n\n\n");
 
@@ -49,6 +49,16 @@ int main()
     printf("Enter your choice :");
     scanf("%d", &ch);
 
+    if (ch == 5)
+    {
+      printf("\nTHANKS FOR USING CALCULATOR");
+      break;
+    }
+    if (ch < 1 || ch > 5)
+    {
+      printf("\nInvalid choice\n\n\n");
+      continue;
+    }
     printf("\nEnter first number :");
     scanf("%f", &num1);
     printf("Enter second number :");
@@ -57,31 +67,23 @@ int main()
     switch (ch)
     {
     case 1:
-      result = sum(num1, num2);
+      result = add(num1, num2);
       printf("\n%.2f + %.2f = %.2f\n\n\n", num1, num2, result);
       break;
 
     case 2:
-      result = diff(num1, num2);
+      result = subtract(num1, num2);
       printf("\n%.2f - %.2f = %.2f\n\n\n", num1, num2, result);
       break;
 
     case 3:
-      result = mult(num1, num2);
+      result = multiply(num1, num2);
       printf("\n%.2f * %.2f = %.2f\n\n\n", num1, num2, result);
       break;
 
     case 4:
       result = divide(num1, num2);
       printf("\n%.2f / %.2f = %.2f\n\n\n", num1, num2, result);
-      break;
-
-    case 5:
-      printf("\nTHANKS FOR USING CALCULATOR");
-      break;
-
-    default:
-      printf("\nInvalid choice\n\n\n");
       break;
     }
   }
