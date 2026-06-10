@@ -20,7 +20,7 @@ A menu-driven Unit Converter built using C.
 
 ## How to Run
 
-gcc unit_converter.c -o converter
+gcc main.c -o converter
 
 ./converter
 
