@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+// Helper function to clear malicious or broken data from the input buffer
+void clear_buffer()
+{
+  int c;
+  while ((c = getchar()) != '\n' && c != EOF)
+    ; // EOF means end of file
+}
 float add(float num1, float num2)
 {
   // sum function
@@ -24,8 +31,13 @@ float divide(float num1, float num2)
   while (num2 == 0)
   {
     printf("A Number cannot be divided by zero\n");
-    printf("Enter the second number :");
-    scanf("%f", &num2);
+    printf("Enter the non-zero second number :");
+    if (scanf("%f", &num2) != 1)
+    {
+      printf("Invalid data type entered.\n");
+      clear_buffer();
+      num2 = 0; // Force loop to stay active
+    }
   }
   return num1 / num2;
 }
@@ -47,7 +59,12 @@ int main()
     printf("5. Exit\n\n");
 
     printf("Enter your choice :");
-    scanf("%d", &ch);
+    if (scanf("%d", &ch) != 1)
+    {
+      printf("\n[!] Error: Please enter numeric digits only.\n\n");
+      clear_buffer(); // Discard the broken input strings
+      continue;
+    }
 
     if (ch == 5)
     {
@@ -60,9 +77,18 @@ int main()
       continue;
     }
     printf("\nEnter first number :");
-    scanf("%f", &num1);
+    while (scanf("%f", &num1) != 1)
+    {
+      printf("[!] Invalid input. Enter a valid number: ");
+      clear_buffer();
+    }
+
     printf("Enter second number :");
-    scanf("%f", &num2);
+    while (scanf("%f", &num2) != 1)
+    {
+      printf("[!] Invalid input. Enter a valid number: ");
+      clear_buffer();
+    }
 
     switch (ch)
     {
