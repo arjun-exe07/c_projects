@@ -2,6 +2,12 @@
 #include <stdlib.h> //rand()
 #include <time.h>
 
+void clear_buffer()
+{
+  int c;
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
+}
 int main()
 {
   srand(time(NULL)); // set seed for random number generation.
@@ -14,8 +20,15 @@ int main()
   for (;;)
   {
     printf("Enter your guess from 1 to 100 :");
-    scanf("%d", &guess);
 
+    if (scanf("%d", &guess) != 1)
+    {
+      printf("[!] Invalid input. Please enter digits only.\n\n");
+      clear_buffer();
+      continue;
+    }
+
+    clear_buffer(); // Clean up trailing newlines or extra text (like '42abc') from a valid entry
     if (guess > 0 && guess <= 100)
     {
       attempt++;
