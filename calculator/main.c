@@ -32,7 +32,8 @@ float divide(float num1, float num2)
   {
     printf("A Number cannot be divided by zero\n");
     printf("Enter the non-zero second number :");
-    if (scanf("%f", &num2) != 1)
+
+    while (scanf("%f", &num2) != 1)
     {
       printf("Invalid data type entered.\n");
       clear_buffer();
