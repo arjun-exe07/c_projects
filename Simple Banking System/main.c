@@ -39,8 +39,8 @@ void withdraw(struct account *Acc)
 
 void viewAccountDetails(struct account *Acc)
 {
-  printf("Name        : %s", Acc->name);
-  printf("Account No. : %d", Acc->account_Number);
+  printf("Name        : %s\n", Acc->name);
+  printf("Account No. : %d\n", Acc->account_Number);
   printf("Balance     : %.2f\n", Acc->balance);
 }
 
@@ -84,9 +84,9 @@ int main()
   if (!exists)
   {
     printf("Enter Account Holder Name: ");
-    getchar(); // clears leftover newline
-    fgets(Acc.name, 50, stdin);
 
+    fgets(Acc.name, 50, stdin);
+    getchar(); // clears leftover newline
     Acc.account_Number = 0;
     while ((Acc.account_Number) <= 0)
     {
@@ -97,7 +97,7 @@ int main()
     }
 
     Acc.balance = 0.0;
-    while ((Acc.balance) < 0)
+    while ((Acc.balance) <= 0)
     {
       printf("Enter Account Initial Balance: ");
       scanf("%f", &Acc.balance);
