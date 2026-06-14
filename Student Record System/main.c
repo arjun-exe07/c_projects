@@ -65,8 +65,9 @@ void addStudent(struct Student students[], int *count)
   printf("Enter Name :");
   getchar();
   fgets(students[*count].name, 50, stdin);
+  // can use  strcspn(str1, str2) to remove \n
 
-    printf("Enter marks :");
+  printf("Enter marks :");
   scanf("%f", &students[*count].marks);
 
   (*count)++;
