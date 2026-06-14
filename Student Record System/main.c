@@ -1,4 +1,14 @@
 #include <stdio.h>
+#include <string.h>
+
+#define MAX_STUDENTS 100
+
+void clear_buffer()
+{
+  int c;
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
+}
 
 struct Student
 {
@@ -9,23 +19,46 @@ struct Student
 
 void addStudent(struct Student students[], int *count)
 {
-  if (*count >= 100)
+  if (*count >= MAX_STUDENTS)
   {
     printf("Student list is full.\n");
     return;
   }
   int roll;
-  printf("Enter Roll No. :");
-  scanf("%d", &roll);
-  // Check for duplicates
-  for (int i = 0; i < *count; i++)
+  for (;;)
   {
-    if (roll == students[i].rollNo)
+    printf("Enter Roll No. (Positive Integer): ");
+    if (scanf("%d", &roll) != 1)
     {
-      printf("Roll number already exists.\n");
-
-      return;
+      printf("[!] Invalid type. Please enter digits only.\n");
+      clear_buffer();
+      continue;
     }
+    clear_buffer();
+
+    if (roll <= 0)
+    {
+      printf("[!] Roll number must be greater than zero.\n");
+      continue;
+    }
+
+    // Verify uniqueness
+    int duplicate = 0;
+    for (int i = 0; i < *count; i++)
+    {
+      if (roll == students[i].rollNo)
+      {
+        duplicate = 1;
+        break;
+      }
+    }
+
+    if (duplicate)
+    {
+      printf("[!] Roll number already exists in database.\n");
+      return; // Exit out to main menu
+    }
+    break; // Roll validation passed
   }
   students[*count].rollNo = roll;
 
@@ -33,7 +66,7 @@ void addStudent(struct Student students[], int *count)
   getchar();
   fgets(students[*count].name, 50, stdin);
 
-  printf("Enter marks :");
+    printf("Enter marks :");
   scanf("%f", &students[*count].marks);
 
   (*count)++;
